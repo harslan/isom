@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methodology — BAIS Career Trajectories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0c1f3f;
+  --navy-mid: #142d54;
+  --navy-light: #1a3a6b;
+  --gold: #c8a44e;
+  --gold-light: #e4cc82;
+  --gold-pale: #f5edda;
+  --cream: #faf8f3;
+  --white: #ffffff;
+  --slate: #4a5568;
+  --slate-light: #8896a8;
+  --teal: #1a8a7d;
+  --teal-light: #e6f5f3;
+  --coral: #c0392b;
+  --coral-light: #fdecea;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* --- HERO --- */
+.hero {
+  text-align: center;
+  padding: 64px 24px 48px;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.hero-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200,164,78,0.3);
+  padding: 6px 18px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.hero h1 em { color: var(--gold-light); font-style: italic; }
+
+.hero p {
+  font-size: 1.05rem;
+  color: var(--slate-light);
+  max-width: 560px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* --- FLOW CONTAINER --- */
+.flow {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  position: relative;
+}
+
+/* Central spine */
+.flow::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 80px;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    var(--gold) 0%,
+    rgba(200,164,78,0.4) 30%,
+    rgba(200,164,78,0.2) 70%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* --- STAGE --- */
+.stage {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stage.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stage number on spine */
+.stage-marker {
+  width: 44px;
+  height: 44px;
+  background: var(--navy);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 2;
+  transition: background 0.3s, color 0.3s;
+}
+
+.stage.visible .stage-marker {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.stage-label {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stage-label span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.stage-label h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+/* --- CARDS GRID --- */
+.cards {
+  display: grid;
+  gap: 14px;
+}
+
+.cards-2 { grid-template-columns: 1fr 1fr; }
+.cards-3 { grid-template-columns: 1fr 1fr 1fr; }
+.cards-4 { grid-template-columns: 1fr 1fr; }
+
+.card {
+  background: var(--navy-mid);
+  border: 1px solid rgba(200,164,78,0.12);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  transition: border-color 0.3s, transform 0.2s;
+}
+
+.card:hover {
+  border-color: rgba(200,164,78,0.35);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.card p {
+  font-size: 0.85rem;
+  color: var(--slate-light);
+  line-height: 1.5;
+}
+
+.card .stat {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  display: block;
+  margin-top: 6px;
+}
+
+/* --- CONNECTOR ARROWS --- */
+.connector {
+  text-align: center;
+  margin: -8px 0 -8px;
+  position: relative;
+  z-index: 2;
+}
+
+.connector svg {
+  width: 24px;
+  height: 32px;
+}
+
+/* --- SHIFT CARDS --- */
+.shift-card {
+  background: var(--navy-mid);
+  border: 1px solid rgba(200,164,78,0.12);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border-left: 3px solid var(--gold);
+  transition: border-color 0.3s, transform 0.2s;
+}
+
+.shift-card:hover { transform: translateX(4px); }
+
+.shift-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.shift-content h3 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.shift-content p {
+  font-size: 0.82rem;
+  color: var(--slate-light);
+  line-height: 1.45;
+}
+
+.shift-arrow {
+  color: var(--gold);
+  font-weight: 300;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* --- CONVERGENCE VISUAL --- */
+.convergence {
+  text-align: center;
+  padding: 32px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.convergence-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.convergence-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(200,164,78,0.12), rgba(200,164,78,0.05));
+  border: 1px solid rgba(200,164,78,0.3);
+  border-radius: 8px;
+  padding: 14px 28px;
+}
+
+.convergence-box span {
+  font-size: 0.85rem;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.plus {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  color: var(--gold);
+}
+
+/* --- TRAJECTORY RESULT CARDS --- */
+.traj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.traj-card {
+  background: var(--navy-mid);
+  border: 1px solid rgba(200,164,78,0.1);
+  border-radius: 8px;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.traj-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.traj-card:hover::before,
+.traj-card.active::before { opacity: 1; }
+
+.traj-card:hover, .traj-card.active {
+  border-color: rgba(200,164,78,0.35);
+  background: rgba(20,45,84,0.8);
+}
+
+.traj-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.traj-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+.traj-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.traj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.traj-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: rgba(200,164,78,0.1);
+  color: var(--gold-light);
+  border: 1px solid rgba(200,164,78,0.15);
+}
+
+.traj-tag.shift1 { background: rgba(26,138,125,0.12); color: #5ec4b8; border-color: rgba(26,138,125,0.2); }
+.traj-tag.shift2 { background: rgba(100,130,200,0.12); color: #8ca8e0; border-color: rgba(100,130,200,0.2); }
+.traj-tag.shift3 { background: rgba(200,164,78,0.12); color: var(--gold-light); border-color: rgba(200,164,78,0.2); }
+
+.traj-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, margin-top 0.3s;
+}
+
+.traj-card.active .traj-detail {
+  max-height: 200px;
+  margin-top: 10px;
+}
+
+.traj-detail p {
+  font-size: 0.8rem;
+  color: var(--slate-light);
+  line-height: 1.5;
+  padding-top: 10px;
+  border-top: 1px solid rgba(200,164,78,0.1);
+}
+
+/* --- VALIDATION STAGE --- */
+.validation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.val-card {
+  background: var(--navy-mid);
+  border: 1px solid rgba(200,164,78,0.12);
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.val-card:hover { transform: translateY(-2px); }
+
+.val-check {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.val-card h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.val-card p {
+  font-size: 0.78rem;
+  color: var(--slate-light);
+  line-height: 1.4;
+}
+
+/* --- LEGEND --- */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 8px 0 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--slate-light);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.legend-dot.s1 { background: #5ec4b8; }
+.legend-dot.s2 { background: #8ca8e0; }
+.legend-dot.s3 { background: var(--gold-light); }
+
+/* --- FOOTER --- */
+.site-footer {
+  text-align: center;
+  padding: 32px 24px;
+  color: var(--slate-light);
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(200,164,78,0.1);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 700px) {
+  .cards-2, .cards-3, .cards-4 { grid-template-columns: 1fr; }
+  .traj-grid { grid-template-columns: 1fr; }
+  .validation-grid { grid-template-columns: 1fr; }
+  .convergence-box { flex-direction: column; gap: 4px; padding: 14px 20px; }
+  .flow::before { left: 24px; }
+  .stage-marker { margin: 0 auto 16px; }
+}
+
+@media (max-width: 500px) {
+  .shift-card { flex-direction: column; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge">Research Methodology</div>
+  <h1>How We Developed <em>Eight Career<br>Trajectories</em> for BAIS Graduates</h1>
+  <p>A systematic, evidence-based process — from market data to actionable advising pathways.</p>
+</header>
+
+<div class="flow">
+
+  <!-- ===== STAGE 1: DATA SOURCES ===== -->
+  <div class="stage" data-stage="1">
+    <div class="stage-marker">1</div>
+    <div class="stage-label">
+      <span>Foundation</span>
+      <h2>Primary Research Sources</h2>
+    </div>
+    <div class="cards cards-2">
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <h3>Bureau of Labor Statistics</h3>
+        <p>Occupational Outlook Handbook 2024–2034 projections, Monthly Labor Review (Jan 2026). Official growth rates and salary data.</p>
+        <span class="stat">6 occupations analyzed</span>
+      </div>
+      <div class="card">
+        <span class="card-icon">🤖</span>
+        <h3>McKinsey State of AI 2025</h3>
+        <p>Global survey of AI adoption across industries. Organizational readiness, talent gaps, and investment patterns.</p>
+        <span class="stat">78% AI adoption rate</span>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <h3>MIT Sloan &amp; Gartner</h3>
+        <p>Davenport &amp; Bean's AI leadership research (Jan 2026). Gartner's 2025 Data &amp; Analytics Summit findings on agentic AI.</p>
+        <span class="stat">1,445% agentic AI surge</span>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎓</span>
+        <h3>GMAC &amp; Industry Reports</h3>
+        <p>2025 Corporate Recruiters Survey, Deloitte GenAI forecasts, industry hiring data from recruitment firms.</p>
+        <span class="stat">Top employer signals</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STAGE 2: KEY FINDINGS ===== -->
+  <div class="stage" data-stage="2">
+    <div class="stage-marker">2</div>
+    <div class="stage-label">
+      <span>Synthesis</span>
+      <h2>Six Critical Market Signals</h2>
+    </div>
+    <div class="cards cards-3">
+      <div class="card">
+        <h3>Explosive Demand</h3>
+        <p>Data scientists: 34% growth (2024–2034). 4th fastest-growing U.S. occupation. ~23,400 openings/year.</p>
+      </div>
+      <div class="card">
+        <h3>AI Is Already Here</h3>
+        <p>78% of organizations used AI in at least one business function in 2024, up from 72% in 2022.</p>
+      </div>
+      <div class="card">
+        <h3>Agentic AI Surge</h3>
+        <p>1,445% increase in multi-agent AI inquiries. 50% of GenAI companies will pilot agentic AI by 2027.</p>
+      </div>
+      <div class="card">
+        <h3>Translation Gap</h3>
+        <p>A top talent bottleneck identified by McKinsey: professionals who bridge AI teams and business strategy.</p>
+      </div>
+      <div class="card">
+        <h3>Governance Crisis</h3>
+        <p>Poor data quality costs $12.9M/year on average. Regulatory pressure accelerating (EU AI Act, SEC).</p>
+      </div>
+      <div class="card">
+        <h3>Cybersecurity × AI</h3>
+        <p>29% BLS growth for security analysts. AI-powered threats creating demand for AI-aware defenders.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STAGE 3: STRUCTURAL SHIFTS ===== -->
+  <div class="stage" data-stage="3">
+    <div class="stage-marker">3</div>
+    <div class="stage-label">
+      <span>Pattern Recognition</span>
+      <h2>Three Structural Shifts Identified</h2>
+    </div>
+    <p style="text-align:center; font-size:0.85rem; color:var(--slate-light); margin-bottom:16px;">
+      From the market signals, three fundamental shifts emerged — each reshaping what BAIS graduates need to know.
+    </p>
+    <div class="shift-card">
+      <div class="shift-num">1</div>
+      <div class="shift-content">
+        <h3>Reporting → Decision Intelligence <span class="shift-arrow">↗</span></h3>
+        <p>AI automates dashboards and descriptive analytics. The premium shifts to prescriptive: "what should we do next?" Students must move up the analytics value chain.</p>
+      </div>
+    </div>
+    <div class="shift-card">
+      <div class="shift-num">2</div>
+      <div class="shift-content">
+        <h3>Individual Tool Use → Organizational AI Strategy <span class="shift-arrow">↗</span></h3>
+        <p>Companies are building "AI factories" — internal infrastructure for scaling AI. Graduates need systems-level thinking, not just personal tool proficiency.</p>
+      </div>
+    </div>
+    <div class="shift-card">
+      <div class="shift-num">3</div>
+      <div class="shift-content">
+        <h3>Technical Execution → Strategic Translation <span class="shift-arrow">↗</span></h3>
+        <p>The biggest bottleneck isn't technology — it's people who can bridge AI capabilities and business decisions. This is the natural advantage of a business school education.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONVERGENCE ===== -->
+  <div class="convergence">
+    <div class="convergence-label">Convergence</div>
+    <div class="convergence-box">
+      <span>Market Signals</span>
+      <span class="plus">+</span>
+      <span>Structural Shifts</span>
+      <span class="plus">+</span>
+      <span>Suffolk BAIS Curriculum</span>
+      <span class="plus">=</span>
+      <span style="color:var(--gold); font-weight:700;">8 Trajectories</span>
+    </div>
+  </div>
+
+  <!-- ===== STAGE 4: EIGHT TRAJECTORIES ===== -->
+  <div class="stage" data-stage="4">
+    <div class="stage-marker">4</div>
+    <div class="stage-label">
+      <span>Result</span>
+      <h2>Eight Career Trajectories</h2>
+    </div>
+    <p style="text-align:center; font-size:0.85rem; color:var(--slate-light); margin-bottom:8px;">
+      Each trajectory sits at the intersection of market demand, structural shifts, and our curriculum strengths. Click any card to see the derivation logic.
+    </p>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot s1"></span> Shift 1: Decision Intelligence</div>
+      <div class="legend-item"><span class="legend-dot s2"></span> Shift 2: Organizational AI</div>
+      <div class="legend-item"><span class="legend-dot s3"></span> Shift 3: Strategic Translation</div>
+    </div>
+    <div class="traj-grid">
+      <div class="traj-card" data-traj="1">
+        <div class="traj-header">
+          <span class="traj-num">1</span>
+          <span class="traj-name">AI-Augmented Data Analyst</span>
+        </div>
+        <div class="traj-tags">
+          <span class="traj-tag shift1">Shift 1</span>
+          <span class="traj-tag">34% BLS growth</span>
+        </div>
+        <div class="traj-detail">
+          <p><strong>Why this trajectory:</strong> BLS projects 34% growth for data scientists, but the role itself is transforming. Traditional reporting is being automated — the new data analyst uses AI to generate insights, not just dashboards. Directly driven by Shift 1 (Reporting → Decision Intelligence). Most accessible entry point for BAIS graduates.</p>
+        </div>
+      </div>
+      <div class="traj-card" data-traj="2">
+        <div class="traj-header">
+          <span class="traj-num">2</span>
+          <span class="traj-name">Analytics Translator / AI Product Manager</span>
+        </div>
+        <div class="traj-tags">
+          <span class="traj-tag shift3">Shift 3</span>
+          <span class="traj-tag">McKinsey talent gap</span>
+        </div>
+        <div class="traj-detail">
+          <p><strong>Why this trajectory:</strong> McKinsey identifies the "translation gap" as a top bottleneck in scaling AI. This emerging role didn't exist 5 years ago — it bridges technical AI teams and business strategy. Directly driven by Shift 3. This is where a business school education beats a CS degree.</p>
+        </div>
+      </div>
+      <div class="traj-card" data-traj="3">
+        <div class="traj-header">
+          <span class="traj-num">3</span>
+          <span class="traj-name">AI/ML Engineer & Applied AI</span>
+        </div>
+        <div class="traj-tags">
+          <span class="traj-tag shift2">Shift 2</span>
+          <span class="traj-tag">78% adoption</span>
+        </div>
+        <div class="traj-detail">
+          <p><strong>Why this trajectory:</strong> With 78% of organizations using AI, demand for builders is surging. Driven by Shift 2 — companies need people who can build and scale AI systems, not just use pre-built tools. Our BAIS curriculum provides the quantitative and programming foundation; double-major with CS strengthens this path further.</p>
+        </div>
+      </div>
+      <div class="traj-card" data-traj="4">
+        <div class="traj-header">
+          <span class="traj-num">4</span>
+          <span class="traj-name">Agentic AI & Process Automation</span>
+        </div>
+        <div class="traj-tags">
+          <span class="traj-tag shift1">Shift 1</span>
+          <span class="traj-tag shift2">Shift 2</span>
+          <span class="traj-tag">1,445% surge</span>
+        </div>
+        <div class="traj-detail">
+          <p><strong>Why this trajectory:</strong> Gartner's 1,445% surge in agentic AI inquiries signals a new frontier. This intersects Shifts 1 and 2 — autonomous systems that make decisions AND operate at organizational scale. Directly connects to ISOM 319 (Operations Management) — understanding business processes is prerequisite to automating them.</p>
+        </div>
+      </div>
+      <div class="traj-card" data-traj="5">
+        <div class="traj-header">
+          <span class="traj-num">5</span>
+          <span class="traj-name">Data & AI Governance</span>
+        </div>
+        <div class="traj-tags">
+          <span class="traj-tag shift2">Shift 2</span>
+          <span class="traj-tag shift3">Shift 3</span>
+          <span class="traj-tag">$12.9M/yr cost</span>
+        </div>
+        <div class="traj-detail">
+          <p><strong>Why this trajectory:</strong> Poor data quality costs $12.9M/year on average (Gartner). EU AI Act and SEC disclosure requirements are creating regulatory demand. Combines Shifts 2 (organizational infrastructure) and 3 (translating compliance to business strategy). Fast-emerging field with few qualified professionals.</p>
+        </div>
+      </div>
+      <div class="traj-card" data-traj="6">
+        <div class="traj-header">
+          <span class="traj-num">6</span>
+          <span class="traj-name">Cybersecurity & AI Security</span>
+        </div>
+        <div class="traj-tags">
+          <span class="traj-tag shift2">Shift 2</span>
+          <span class="traj-tag">29% BLS growth</span>
+        </div>
+        <div class="traj-detail">
+          <p><strong>Why this trajectory:</strong> BLS projects 29% growth for information security analysts (median $124,910). AI is both the threat and the defense tool — creating a new specialty. Driven by Shift 2 as organizations need to secure their AI infrastructure. Aligns directly with our Cybersecurity minor (12 current students).</p>
+        </div>
+      </div>
+      <div class="traj-card" data-traj="7">
+        <div class="traj-header">
+          <span class="traj-num">7</span>
+          <span class="traj-name">Business Systems & Digital Transformation</span>
+        </div>
+        <div class="traj-tags">
+          <span class="traj-tag shift2">Shift 2</span>
+          <span class="traj-tag shift3">Shift 3</span>
+          <span class="traj-tag">Steady demand</span>
+        </div>
+        <div class="traj-detail">
+          <p><strong>Why this trajectory:</strong> BLS projects 9% growth for management analysts — steady, not explosive. But the role is evolving: now requires understanding how AI integrates into enterprise systems. Combines Shifts 2 and 3. This is the most traditional BAIS path, updated for the AI era. Maps to our largest enrollment patterns.</p>
+        </div>
+      </div>
+      <div class="traj-card" data-traj="8">
+        <div class="traj-header">
+          <span class="traj-num">8</span>
+          <span class="traj-name">Quantitative Finance & FinTech</span>
+        </div>
+        <div class="traj-tags">
+          <span class="traj-tag shift1">Shift 1</span>
+          <span class="traj-tag shift3">Shift 3</span>
+          <span class="traj-tag">Top double-major</span>
+        </div>
+        <div class="traj-detail">
+          <p><strong>Why this trajectory:</strong> Finance is our #1 double-major combination (10 students). AI is transforming risk modeling, algorithmic trading, and fraud detection. Combines Shifts 1 (decision intelligence in financial contexts) and 3 (translating quantitative models for business stakeholders). Natural path for BAIS + Finance students.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STAGE 5: VALIDATION ===== -->
+  <div class="stage" data-stage="5">
+    <div class="stage-marker">5</div>
+    <div class="stage-label">
+      <span>Validation</span>
+      <h2>Cross-Checked Against Three Criteria</h2>
+    </div>
+    <div class="validation-grid">
+      <div class="val-card">
+        <span class="val-check">✓</span>
+        <h3>Market Evidence</h3>
+        <p>Every trajectory backed by BLS data, industry reports, or documented hiring trends — no speculation.</p>
+      </div>
+      <div class="val-card">
+        <span class="val-check">✓</span>
+        <h3>Curriculum Alignment</h3>
+        <p>Each maps to existing BAIS courses, minors, or double-major combinations. Students can pursue them today.</p>
+      </div>
+      <div class="val-card">
+        <span class="val-check">✓</span>
+        <h3>Student Patterns</h3>
+        <p>Validated against actual enrollment: 166 BAIS majors, 53 minors, top double-majors (Finance, Marketing, Accounting).</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>ISOM Department · Sawyer Business School · Suffolk University · February 2026</p>
+</footer>
+
+<script>
+// Scroll-triggered reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.stage, .convergence').forEach(el => observer.observe(el));
+
+// Trajectory card expand/collapse
+document.querySelectorAll('.traj-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const wasActive = card.classList.contains('active');
+    document.querySelectorAll('.traj-card').forEach(c => c.classList.remove('active'));
+    if (!wasActive) card.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
