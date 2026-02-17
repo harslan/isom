@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAIS Career Trajectories — Suffolk University SBS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0c1f3f;
+  --navy-mid: #142d54;
+  --navy-light: #1a3a6b;
+  --gold: #c8a44e;
+  --gold-light: #e4cc82;
+  --gold-pale: #f5edda;
+  --cream: #faf8f3;
+  --white: #ffffff;
+  --slate: #4a5568;
+  --slate-light: #8896a8;
+  --red-accent: #c0392b;
+  --green-accent: #27ae60;
+  --blue-accent: #2980b9;
+  --teal: #1a8a7d;
+  --radius: 8px;
+  --shadow-sm: 0 1px 3px rgba(12,31,63,0.08);
+  --shadow-md: 0 4px 16px rgba(12,31,63,0.1);
+  --shadow-lg: 0 8px 32px rgba(12,31,63,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', 'Georgia', serif;
+  background: var(--cream);
+  color: var(--navy);
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- HERO --- */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 40%, var(--navy-light) 100%);
+  color: var(--white);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 80%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(200,164,78,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.hero-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 80px 32px 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200,164,78,0.35);
+  padding: 6px 16px;
+  border-radius: 3px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.2s forwards;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.35s forwards;
+}
+
+.hero h1 em {
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--slate-light);
+  font-weight: 300;
+  max-width: 600px;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.5s forwards;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.65s forwards;
+}
+
+.hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-meta .dot {
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.draft-tag {
+  display: inline-block;
+  background: rgba(192,57,43,0.15);
+  color: #f5a8a0;
+  border: 1px solid rgba(192,57,43,0.3);
+  padding: 3px 12px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- NAV --- */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid rgba(12,31,63,0.08);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-inner a {
+  flex-shrink: 0;
+  padding: 14px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--slate);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-inner a:hover {
+  color: var(--navy);
+  border-bottom-color: var(--gold);
+}
+
+/* --- MAIN --- */
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  padding: 56px 0 40px;
+}
+
+section + section {
+  border-top: 1px solid rgba(12,31,63,0.06);
+}
+
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.85rem;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+h2 .section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--navy-mid);
+  margin: 32px 0 12px;
+}
+
+p { margin-bottom: 16px; }
+
+.lead {
+  font-size: 1.08rem;
+  color: var(--slate);
+  margin-bottom: 32px;
+  max-width: 720px;
+}
+
+/* --- SIGNAL GRID --- */
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.signal-card {
+  background: var(--white);
+  border: 1px solid rgba(12,31,63,0.07);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.signal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.signal-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.signal-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.signal-detail {
+  font-size: 0.9rem;
+  color: var(--slate);
+  line-height: 1.55;
+}
+
+/* --- SHIFT BLOCKS --- */
+.shift-block {
+  background: var(--white);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 24px 28px;
+  margin: 20px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.shift-block h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.shift-block p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--slate);
+}
+
+/* --- CAREER CARDS --- */
+.career-card {
+  background: var(--white);
+  border: 1px solid rgba(12,31,63,0.07);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 24px 0;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s;
+}
+
+.career-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.career-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 28px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.career-header:hover {
+  background: rgba(12,31,63,0.015);
+}
+
+.career-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  line-height: 1;
+  min-width: 36px;
+}
+
+.career-title {
+  flex: 1;
+}
+
+.career-title h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--navy);
+}
+
+.career-title .career-evo {
+  font-size: 0.85rem;
+  color: var(--slate-light);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.career-toggle {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  color: var(--gold);
+  font-size: 1.1rem;
+  transition: transform 0.3s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.career-card.open .career-toggle {
+  transform: rotate(180deg);
+  background: var(--gold);
+  color: var(--white);
+}
+
+.career-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.career-body-inner {
+  padding: 0 28px 28px;
+  border-top: 1px solid rgba(12,31,63,0.06);
+}
+
+.career-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.career-detail {
+  padding: 16px;
+  border-radius: 6px;
+  background: var(--cream);
+}
+
+.career-detail.full-width {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(12,31,63,0.03), rgba(200,164,78,0.06));
+}
+
+.career-detail-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.career-detail p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+/* --- MAPPING TABLES --- */
+.map-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.92rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.map-table thead th {
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 600;
+  text-align: left;
+  padding: 14px 20px;
+  font-size: 0.82rem;
+  letter-spacing: 0.3px;
+}
+
+.map-table tbody td {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(12,31,63,0.06);
+  vertical-align: top;
+}
+
+.map-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.map-table tbody tr:nth-child(even) {
+  background: rgba(12,31,63,0.015);
+}
+
+.map-table .tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin: 2px 4px 2px 0;
+  font-weight: 500;
+}
+
+.tag-teal { background: rgba(26,138,125,0.1); color: var(--teal); }
+.tag-blue { background: rgba(41,128,185,0.1); color: var(--blue-accent); }
+.tag-gold { background: rgba(200,164,78,0.15); color: #8a6d2b; }
+.tag-green { background: rgba(39,174,96,0.1); color: var(--green-accent); }
+
+.enrollment-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--slate-light);
+  background: rgba(12,31,63,0.04);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+/* --- SKILLS SECTION --- */
+.skills-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.skill-pill {
+  background: var(--white);
+  border: 1px solid rgba(12,31,63,0.08);
+  border-radius: 40px;
+  padding: 12px 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.skill-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.skill-pill strong {
+  color: var(--navy);
+  font-size: 0.9rem;
+}
+
+.skill-pill span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--slate);
+  margin-top: 2px;
+}
+
+/* --- ADVISING --- */
+.advising-card {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin: 16px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.advising-card::before {
+  content: '"';
+  font-family: 'DM Serif Display', serif;
+  font-size: 6rem;
+  color: rgba(200,164,78,0.1);
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  line-height: 1;
+}
+
+.advising-q {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.advising-a {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  position: relative;
+}
+
+/* --- FEEDBACK --- */
+.feedback-section {
+  background: var(--white);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  margin: 32px 0;
+}
+
+.feedback-section h3 {
+  font-size: 1.3rem;
+  margin: 0 0 16px;
+  color: var(--navy);
+}
+
+.feedback-list {
+  list-style: none;
+  counter-reset: fb;
+}
+
+.feedback-list li {
+  counter-increment: fb;
+  padding: 12px 0 12px 40px;
+  position: relative;
+  border-bottom: 1px solid rgba(12,31,63,0.06);
+  font-size: 0.95rem;
+  color: var(--slate);
+}
+
+.feedback-list li:last-child { border-bottom: none; }
+
+.feedback-list li::before {
+  content: counter(fb);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 26px;
+  height: 26px;
+  background: var(--gold-pale);
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* --- FOOTER --- */
+.site-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 40px 32px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.site-footer strong {
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 700px) {
+  .hero-inner { padding: 56px 24px 48px; }
+  .main { padding: 0 20px; }
+  .career-detail-grid { grid-template-columns: 1fr; }
+  .signal-grid { grid-template-columns: 1fr; }
+  .nav-inner { padding: 0 16px; }
+  .feedback-section { padding: 24px; }
+  .career-header { padding: 16px 20px; }
+  .career-body-inner { padding: 0 20px 20px; }
+}
+
+/* --- PRINT --- */
+@media print {
+  .sticky-nav { display: none; }
+  .career-body { max-height: none !important; }
+  .career-toggle { display: none; }
+  .hero { background: var(--navy) !important; -webkit-print-color-adjust: exact; }
+  body { font-size: 11pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ======== HERO ======== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">ISOM Department &bull; Sawyer Business School</div>
+    <h1>BAIS Career Trajectories<br><em>in the Age of AI</em></h1>
+    <p class="hero-sub">A forward-looking analysis of eight career pathways for Business Analytics &amp; Information Systems graduates — prepared for the BAIS Advising Kit.</p>
+    <div class="hero-meta">
+      <span><span class="dot"></span> Suffolk University</span>
+      <span><span class="dot"></span> February 2026</span>
+      <span><span class="dot"></span> <span class="draft-tag">Draft — Feedback by Feb 23</span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ======== NAV ======== -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <a href="#signals">Market Signals</a>
+    <a href="#shifts">Structural Shifts</a>
+    <a href="#trajectories">8 Trajectories</a>
+    <a href="#mapping">Double-Majors &amp; Minors</a>
+    <a href="#skills">Cross-Cutting Skills</a>
+    <a href="#advising">Advising Prompts</a>
+    <a href="#feedback">Feedback</a>
+  </div>
+</nav>
+
+<!-- ======== MAIN ======== -->
+<div class="main">
+
+  <!-- EXEC SUMMARY -->
+  <section>
+    <h2><span class="section-num">OVERVIEW</span>Executive Summary</h2>
+    <p class="lead">AI is not replacing analytics professionals — it is redefining what they do. Organizations need <em>more</em> analytics talent, but those professionals must understand, build, and leverage AI tools to create business value.</p>
+    <p>This analysis identifies eight forward-looking career trajectories for BAIS graduates, informed by current labor market data from the Bureau of Labor Statistics, McKinsey's State of AI 2025, MIT Sloan Management Review, Gartner, and GMAC's 2025 Corporate Recruiters Survey. These trajectories are designed to replace the draft career paths in the advising kit with pathways that reflect where the field is heading — not just where it has been.</p>
+  </section>
+
+  <!-- MARKET SIGNALS -->
+  <section id="signals">
+    <h2><span class="section-num">01</span>Key Market Signals</h2>
+    <p class="lead">Six data points that shape the career outlook for BAIS graduates.</p>
+    <div class="signal-grid">
+      <div class="signal-card">
+        <div class="signal-label">Data Scientist Growth</div>
+        <div class="signal-value">34%</div>
+        <div class="signal-detail">BLS projected growth 2024–2034, with ~23,400 openings/year. Fourth fastest-growing U.S. occupation. Median salary $112,590.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">AI Adoption</div>
+        <div class="signal-value">78%</div>
+        <div class="signal-detail">Of organizations used AI in at least one business function in 2024, up from 72% in 2022. Adoption is accelerating across every sector and function.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">Agentic AI Surge</div>
+        <div class="signal-value">1,445%</div>
+        <div class="signal-detail">Increase in multi-agent system inquiries (Gartner, Q1 2024–Q2 2025). Deloitte projects 50% of GenAI companies will pilot agentic AI by 2027. MIT Sloan calls it a top 2026 trend.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">Cost of Poor Governance</div>
+        <div class="signal-value">$12.9M</div>
+        <div class="signal-detail">Average annual cost of poor data quality per organization (Gartner). AI governance is now operational necessity. EU AI Act and state privacy laws are driving new roles.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">AI Analyst Premium</div>
+        <div class="signal-value">30–50%</div>
+        <div class="signal-detail">Higher salary for AI business analysts vs. traditional analysts (2025 salary reports). The skills premium is real and growing.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">Top Skills Demanded</div>
+        <div class="signal-value">Strategic</div>
+        <div class="signal-detail">Problem-solving, strategic thinking, and adaptability are the top future skills across all industries (GMAC 2025). Technical skill alone is not enough.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRUCTURAL SHIFTS -->
+  <section id="shifts">
+    <h2><span class="section-num">02</span>Three Structural Shifts</h2>
+    <p class="lead">Three forces are fundamentally redefining what BAIS graduates need to know.</p>
+
+    <div class="shift-block">
+      <h3>1. From Reporting to Decision Intelligence</h3>
+      <p>The analytics value chain has evolved: Manual SQL → BI Dashboards → Self-Service BI → Augmented Analytics → Agentic Analytics. Traditional reporting is being automated. The premium is on professionals who move from "what happened?" to "what should we do next?" — the shift from descriptive to prescriptive analytics our curriculum already teaches.</p>
+    </div>
+
+    <div class="shift-block">
+      <h3>2. From Individual Tool Use to Organizational AI Strategy</h3>
+      <p>MIT Sloan's 2026 outlook emphasizes that generative AI is becoming an organizational resource, not an individual productivity tool. Companies are building "AI factories" — internal infrastructure that standardizes AI deployment. Graduates need to understand how AI scales across an organization, not just how to use ChatGPT.</p>
+    </div>
+
+    <div class="shift-block">
+      <h3>3. From Technical Execution to Strategic Translation</h3>
+      <p>McKinsey's State of AI 2025 identifies the "Analytics Translator" as the most critical talent gap. The biggest barrier to scaling AI is not technology — it's the shortage of professionals who can translate technical capability into business value. This is a natural strength for business-school-trained analysts.</p>
+    </div>
+  </section>
+
+  <!-- TRAJECTORIES -->
+  <section id="trajectories">
+    <h2><span class="section-num">03</span>Eight Career Trajectories</h2>
+    <p class="lead">Organized from most accessible (strong current curriculum alignment) to most specialized (may benefit from double-major or minor). Click each to expand.</p>
+
+    <!-- TRAJECTORY 1 -->
+    <div class="career-card" id="t1">
+      <div class="career-header" onclick="toggleCard(this)">
+        <div class="career-num">1</div>
+        <div class="career-title">
+          <h3>AI-Augmented Data Analyst</h3>
+          <div class="career-evo">Traditional BI analyst → AI-powered insight generator</div>
+        </div>
+        <div class="career-toggle">▼</div>
+      </div>
+      <div class="career-body">
+        <div class="career-body-inner">
+          <div class="career-detail-grid">
+            <div class="career-detail">
+              <div class="career-detail-label">Typical Roles</div>
+              <p>Business Intelligence Analyst, Analytics Engineer, Augmented Analytics Specialist</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Key Skills</div>
+              <p>SQL, Python, AI-assisted analytics tools (Tableau AI, Power BI Copilot), prompt engineering for data queries, data storytelling</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Market Outlook</div>
+              <p>BLS projects 34% growth for data scientists through 2034, with ~23,400 openings/year. Entry analyst salaries $65K–85K; data scientist median $112,590 (BLS). Among the most accessible paths for BAIS graduates.</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Salary Range</div>
+              <p>$65K–85K entry · $112,590 median for data scientists (BLS)</p>
+            </div>
+            <div class="career-detail full-width">
+              <div class="career-detail-label">AI Impact</div>
+              <p>AI automates routine reporting and data cleaning. Analysts shift to interpreting AI-generated insights, validating outputs, and translating findings for stakeholders. The role becomes more strategic, less mechanical. Graduates who combine SQL/Python proficiency with business communication will thrive.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAJECTORY 2 -->
+    <div class="career-card" id="t2">
+      <div class="career-header" onclick="toggleCard(this)">
+        <div class="career-num">2</div>
+        <div class="career-title">
+          <h3>Analytics Translator / AI Product Manager</h3>
+          <div class="career-evo">Emerging role bridging technical AI teams and business strategy</div>
+        </div>
+        <div class="career-toggle">▼</div>
+      </div>
+      <div class="career-body">
+        <div class="career-body-inner">
+          <div class="career-detail-grid">
+            <div class="career-detail">
+              <div class="career-detail-label">Typical Roles</div>
+              <p>Analytics Translator, AI Product Manager, Domain Owner, Decision Scientist</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Key Skills</div>
+              <p>Business acumen, AI literacy, stakeholder management, requirements translation, use-case identification, ROI measurement</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Market Outlook</div>
+              <p>McKinsey identifies this as the critical talent gap in scaling AI. Salaries $90K–140K. High demand across all industries.</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Salary Range</div>
+              <p>$90K–140K · Premium for those with both technical and business skills</p>
+            </div>
+            <div class="career-detail full-width">
+              <div class="career-detail-label">AI Impact</div>
+              <p>This role <em>exists because of AI</em>. Organizations need professionals who understand both AI capabilities and business objectives to bridge the gap between data science teams and executive decision-makers. Directly aligned with the SAIL Framework's emphasis on strategic judgment over technical execution.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAJECTORY 3 -->
+    <div class="career-card" id="t3">
+      <div class="career-header" onclick="toggleCard(this)">
+        <div class="career-num">3</div>
+        <div class="career-title">
+          <h3>AI/ML Engineer & Applied AI Specialist</h3>
+          <div class="career-evo">Data scientist → AI implementation specialist</div>
+        </div>
+        <div class="career-toggle">▼</div>
+      </div>
+      <div class="career-body">
+        <div class="career-body-inner">
+          <div class="career-detail-grid">
+            <div class="career-detail">
+              <div class="career-detail-label">Typical Roles</div>
+              <p>ML Engineer, AI Engineer, Applied AI Specialist, Automation Specialist</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Key Skills</div>
+              <p>Python, ML frameworks (TensorFlow, PyTorch), MLOps, cloud platforms (AWS/Azure/GCP), API integration, model deployment</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Market Outlook</div>
+              <p>Among fastest-growing tech roles. 78% of organizations used AI in at least one function in 2024. Salaries $100K–180K+.</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Salary Range</div>
+              <p>$100K–180K+ · Big Tech total comp $180K–450K+</p>
+            </div>
+            <div class="career-detail full-width">
+              <div class="career-detail-label">AI Impact</div>
+              <p>AI creates <em>more</em> demand for people who can build, deploy, and maintain AI systems. Focus shifts from model building to production deployment, monitoring, and governance. Students targeting this path benefit from the AI minor and strong Python/statistics foundation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAJECTORY 4 -->
+    <div class="career-card" id="t4">
+      <div class="career-header" onclick="toggleCard(this)">
+        <div class="career-num">4</div>
+        <div class="career-title">
+          <h3>Agentic AI & Process Automation Architect</h3>
+          <div class="career-evo">New frontier — designing autonomous AI systems for business</div>
+        </div>
+        <div class="career-toggle">▼</div>
+      </div>
+      <div class="career-body">
+        <div class="career-body-inner">
+          <div class="career-detail-grid">
+            <div class="career-detail">
+              <div class="career-detail-label">Typical Roles</div>
+              <p>AI Automation Architect, Agentic Systems Designer, Intelligent Process Specialist</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Key Skills</div>
+              <p>Multi-agent system design, workflow orchestration, API architecture, RAG systems, prompt engineering, process optimization (connects to ISOM 319)</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Market Outlook</div>
+              <p>Gartner reports 1,445% surge in multi-agent system inquiries. Deloitte projects 50% of GenAI companies will pilot agentic AI by 2027. Premium salaries in an emerging field.</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Salary Range</div>
+              <p>Premium (emerging) · Early movers command significant salary advantages</p>
+            </div>
+            <div class="career-detail full-width">
+              <div class="career-detail-label">AI Impact</div>
+              <p>This is the next wave. 2026 is the inflection point for agentic AI — autonomous systems that plan and execute business tasks. MIT Sloan identifies this as one of five defining AI trends for 2026. Understanding workflow design and process optimization (ISOM 319) becomes foundational for building autonomous business systems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAJECTORY 5 -->
+    <div class="career-card" id="t5">
+      <div class="career-header" onclick="toggleCard(this)">
+        <div class="career-num">5</div>
+        <div class="career-title">
+          <h3>Data & AI Governance Specialist</h3>
+          <div class="career-evo">Compliance analyst → AI risk and governance leader</div>
+        </div>
+        <div class="career-toggle">▼</div>
+      </div>
+      <div class="career-body">
+        <div class="career-body-inner">
+          <div class="career-detail-grid">
+            <div class="career-detail">
+              <div class="career-detail-label">Typical Roles</div>
+              <p>AI Governance Analyst, Data Quality Engineer, AI Ethics & Compliance Specialist, Responsible AI Lead</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Key Skills</div>
+              <p>Data governance frameworks, regulatory compliance (EU AI Act, state privacy laws), bias detection, audit methodology, risk assessment</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Market Outlook</div>
+              <p>Gartner estimates poor data quality costs $12.9M/year per organization. Governance is operational necessity. Rapidly growing, driven by regulation.</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Salary Range</div>
+              <p>$80K–130K · Higher in regulated industries (finance, healthcare)</p>
+            </div>
+            <div class="career-detail full-width">
+              <div class="career-detail-label">AI Impact</div>
+              <p>As AI becomes autonomous, governance becomes critical. Organizations need professionals who ensure AI systems are transparent, auditable, ethical, and compliant. Strong alignment with BAIS + Accounting double-major for audit analytics applications.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAJECTORY 6 -->
+    <div class="career-card" id="t6">
+      <div class="career-header" onclick="toggleCard(this)">
+        <div class="career-num">6</div>
+        <div class="career-title">
+          <h3>Cybersecurity & AI Security Analyst</h3>
+          <div class="career-evo">Security analyst → AI-aware threat specialist</div>
+        </div>
+        <div class="career-toggle">▼</div>
+      </div>
+      <div class="career-body">
+        <div class="career-body-inner">
+          <div class="career-detail-grid">
+            <div class="career-detail">
+              <div class="career-detail-label">Typical Roles</div>
+              <p>Security Operations Analyst, AI Security Specialist, Threat Intelligence Analyst, GRC Analyst</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Key Skills</div>
+              <p>Threat detection, SIEM tools, AI-powered security platforms, prompt injection defense, compliance frameworks, incident response</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Market Outlook</div>
+              <p>BLS projects 29% growth for information security analysts (2024–2034). AI introduces new attack vectors (prompt injection, model poisoning). Median salary $124,910.</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Salary Range</div>
+              <p>$85K–95K entry · $124,910 median (BLS) · Top 10% earn $186K+</p>
+            </div>
+            <div class="career-detail full-width">
+              <div class="career-detail-label">AI Impact</div>
+              <p>AI both strengthens and complicates security. New threats from agentic AI require security professionals who understand AI architectures and can defend against AI-specific attacks. Direct alignment with the Cybersecurity minor (12 current students).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAJECTORY 7 -->
+    <div class="career-card" id="t7">
+      <div class="career-header" onclick="toggleCard(this)">
+        <div class="career-num">7</div>
+        <div class="career-title">
+          <h3>Business Systems & Digital Transformation Analyst</h3>
+          <div class="career-evo">IT business analyst → AI-enabled transformation consultant</div>
+        </div>
+        <div class="career-toggle">▼</div>
+      </div>
+      <div class="career-body">
+        <div class="career-body-inner">
+          <div class="career-detail-grid">
+            <div class="career-detail">
+              <div class="career-detail-label">Typical Roles</div>
+              <p>Systems Analyst, Digital Transformation Analyst, IT Business Analyst, ERP/CRM Analyst</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Key Skills</div>
+              <p>Requirements gathering, process mapping, ERP/CRM systems, change management, AI integration planning, Agile/Scrum</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Market Outlook</div>
+              <p>9% growth for management analysts (BLS). Every digital transformation now has an AI component. Salaries $70K–110K.</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Salary Range</div>
+              <p>$70K–110K · Growth path to senior consulting and leadership</p>
+            </div>
+            <div class="career-detail full-width">
+              <div class="career-detail-label">AI Impact</div>
+              <p>AI tools accelerate requirements analysis and process documentation. Analysts focus more on change management, cross-functional coordination, and AI integration strategy. A strong path for students who enjoy working at the intersection of technology and organizational change.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAJECTORY 8 -->
+    <div class="career-card" id="t8">
+      <div class="career-header" onclick="toggleCard(this)">
+        <div class="career-num">8</div>
+        <div class="career-title">
+          <h3>Quantitative Finance & FinTech Analyst</h3>
+          <div class="career-evo">Financial analyst → AI-powered quantitative specialist</div>
+        </div>
+        <div class="career-toggle">▼</div>
+      </div>
+      <div class="career-body">
+        <div class="career-body-inner">
+          <div class="career-detail-grid">
+            <div class="career-detail">
+              <div class="career-detail-label">Typical Roles</div>
+              <p>Quantitative Analyst, FinTech Developer, Algorithmic Trading Analyst, Financial Data Scientist</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Key Skills</div>
+              <p>Python/R, financial modeling, time-series analysis, algorithmic trading systems, blockchain/DeFi basics, AI for fraud detection</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Market Outlook</div>
+              <p>Finance is one of the highest-paying sectors for analytics talent. Strong alignment with BAIS + Finance double major (10 current students).</p>
+            </div>
+            <div class="career-detail">
+              <div class="career-detail-label">Salary Range</div>
+              <p>$90K–160K+ · Among highest-paying analytics paths</p>
+            </div>
+            <div class="career-detail full-width">
+              <div class="career-detail-label">AI Impact</div>
+              <p>AI transforms risk assessment, trading, fraud detection, and customer service in finance. Professionals who combine financial domain expertise with AI implementation are highly sought. The BAIS + Finance combination positions graduates at the intersection of two high-demand fields.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPPING -->
+  <section id="mapping">
+    <h2><span class="section-num">04</span>Double-Major & Minor Alignment</h2>
+    <p class="lead">How career trajectories map to current student pathways.</p>
+
+    <h3>By Double Major</h3>
+    <table class="map-table">
+      <thead>
+        <tr>
+          <th>Double Major</th>
+          <th>Best-Fit Trajectories</th>
+          <th>Why It Fits</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>BAIS + Finance</strong> <span class="enrollment-badge">10 students</span></td>
+          <td>
+            <span class="tag tag-gold">FinTech Analyst</span>
+            <span class="tag tag-teal">Data Analyst</span>
+            <span class="tag tag-blue">AI Governance</span>
+          </td>
+          <td>Combines financial domain expertise with AI/analytics for quant roles, fintech, and regulatory compliance</td>
+        </tr>
+        <tr>
+          <td><strong>BAIS + Marketing</strong> <span class="enrollment-badge">8 students</span></td>
+          <td>
+            <span class="tag tag-teal">Data Analyst</span>
+            <span class="tag tag-gold">Analytics Translator</span>
+            <span class="tag tag-blue">Business Systems</span>
+          </td>
+          <td>Marketing analytics, consumer insights, and MarTech driven by AI-powered segmentation and personalization</td>
+        </tr>
+        <tr>
+          <td><strong>BAIS + Accounting</strong> <span class="enrollment-badge">6 students</span></td>
+          <td>
+            <span class="tag tag-blue">AI Governance</span>
+            <span class="tag tag-blue">Business Systems</span>
+            <span class="tag tag-teal">Data Analyst</span>
+          </td>
+          <td>Audit analytics, accounting information systems, and AI-driven compliance are growing rapidly</td>
+        </tr>
+        <tr>
+          <td><strong>BAIS + Global Business</strong> <span class="enrollment-badge">3 students</span></td>
+          <td>
+            <span class="tag tag-gold">Analytics Translator</span>
+            <span class="tag tag-blue">Business Systems</span>
+            <span class="tag tag-blue">AI Governance</span>
+          </td>
+          <td>Cross-cultural AI strategy, international data governance (GDPR, EU AI Act), global supply chain analytics</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>By Minor / Concentration</h3>
+    <table class="map-table">
+      <thead>
+        <tr>
+          <th>Minor</th>
+          <th>Best-Fit Trajectories</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AI Minor</strong> <span class="enrollment-badge">13 students</span></td>
+          <td>
+            <span class="tag tag-green">AI/ML Engineer</span>
+            <span class="tag tag-green">Agentic AI</span>
+            <span class="tag tag-gold">Analytics Translator</span>
+          </td>
+          <td>Direct pathway to technical AI roles. High growth potential.</td>
+        </tr>
+        <tr>
+          <td><strong>Cybersecurity Minor</strong> <span class="enrollment-badge">12 students</span></td>
+          <td>
+            <span class="tag tag-green">Cybersecurity & AI Security</span>
+          </td>
+          <td>29% BLS growth. AI introduces new attack vectors needing security experts who understand AI.</td>
+        </tr>
+        <tr>
+          <td><strong>Business Analytics Minor</strong> <span class="enrollment-badge">22 students</span></td>
+          <td>
+            <span class="tag tag-teal">Data Analyst</span>
+            <span class="tag tag-gold">Analytics Translator</span>
+          </td>
+          <td>For non-BAIS majors gaining analytics skills. Strong entry pathway into analytics careers.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CROSS-CUTTING SKILLS -->
+  <section id="skills">
+    <h2><span class="section-num">05</span>Cross-Cutting Skills</h2>
+    <p class="lead">Five capabilities that matter across every trajectory.</p>
+    <div class="skills-strip">
+      <div class="skill-pill">
+        <strong>AI Literacy & Prompt Engineering</strong>
+        <span>Understanding how AI works, its limits, and how to use it effectively. Foundation of the SAIL Framework.</span>
+      </div>
+      <div class="skill-pill">
+        <strong>Data Storytelling</strong>
+        <span>AI generates more insights faster — someone must translate them into strategic narratives for stakeholders.</span>
+      </div>
+      <div class="skill-pill">
+        <strong>Ethical & Responsible AI</strong>
+        <span>Every role involves decisions about fairness, bias, transparency, and accountability.</span>
+      </div>
+      <div class="skill-pill">
+        <strong>Business Judgment</strong>
+        <span>AI excels at pattern recognition but lacks context. Human judgment on strategy and ethics is the enduring differentiator.</span>
+      </div>
+      <div class="skill-pill">
+        <strong>Continuous Learning</strong>
+        <span>AI tools evolve monthly. Graduates must be prepared to learn new tools throughout their careers.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVISING PROMPTS -->
+  <section id="advising">
+    <h2><span class="section-num">06</span>Advising Conversation Starters</h2>
+    <p class="lead">Questions to help guide BAIS students toward the right trajectory.</p>
+
+    <div class="advising-card">
+      <div class="advising-q">"Do you see yourself building AI systems or using AI tools to solve business problems?"</div>
+      <div class="advising-a">→ Guides toward technical paths (AI/ML Engineer, Agentic AI) vs. strategic paths (Analytics Translator, Data Analyst)</div>
+    </div>
+    <div class="advising-card">
+      <div class="advising-q">"Are you more interested in finding insights or protecting data?"</div>
+      <div class="advising-a">→ Distinguishes analytics trajectories from cybersecurity and governance paths</div>
+    </div>
+    <div class="advising-card">
+      <div class="advising-q">"What industry excites you most?"</div>
+      <div class="advising-a">→ Helps match with double-major or minor. Finance interest → FinTech path. Healthcare interest → potential new pathway.</div>
+    </div>
+    <div class="advising-card">
+      <div class="advising-q">"How comfortable are you with ambiguity and stakeholder communication?"</div>
+      <div class="advising-a">→ High comfort = Analytics Translator. Prefers structure = AI/ML Engineer or Cybersecurity.</div>
+    </div>
+  </section>
+
+  <!-- FEEDBACK -->
+  <section id="feedback">
+    <h2><span class="section-num">07</span>We Need Your Input</h2>
+    <div class="feedback-section">
+      <h3>Questions for Faculty Feedback</h3>
+      <p style="margin-bottom: 16px; color: var(--slate);">Please share your thoughts by <strong>Friday, February 20</strong> so we can consolidate input before the February 23 meeting with Associate Dean Bicen.</p>
+      <ol class="feedback-list">
+        <li>Are we missing any career paths that your students are pursuing or that you see emerging?</li>
+        <li>Which 3–4 trajectories are most important for Suffolk BAIS graduates specifically?</li>
+        <li>Are the skills listed for each trajectory accurate? What should be added or removed?</li>
+        <li>How should our curriculum evolve to prepare students for these trajectories?</li>
+        <li>Which trajectories are best suited for the BAIS + Finance, BAIS + Marketing, and BAIS + Accounting double-major pathways?</li>
+        <li>Should any trajectories be combined or split differently?</li>
+      </ol>
+    </div>
+  </section>
+
+</div>
+
+<!-- ======== FOOTER ======== -->
+<footer class="site-footer">
+  <p><strong>ISOM Department</strong> · Sawyer Business School · Suffolk University</p>
+  <p style="margin-top: 8px;">Sources: BLS Occupational Outlook Handbook (2024–2034 projections), BLS Monthly Labor Review (Jan 2026), McKinsey State of AI 2025, MIT Sloan Management Review (Davenport & Bean, Jan 2026), Gartner 2025 Data & Analytics Summit, Deloitte GenAI forecasts, GMAC Corporate Recruiters Survey 2025.</p>
+  <p style="margin-top: 4px;">Salary data marked "(BLS)" uses official Bureau of Labor Statistics May 2024 wage estimates. Other salary ranges are approximate market estimates from aggregated industry sources.</p>
+</footer>
+
+<script>
+function toggleCard(header) {
+  const card = header.closest('.career-card');
+  const body = card.querySelector('.career-body');
+  const isOpen = card.classList.contains('open');
+
+  if (isOpen) {
+    body.style.maxHeight = '0';
+    card.classList.remove('open');
+  } else {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    card.classList.add('open');
+  }
+}
+
+// Open first card by default
+document.addEventListener('DOMContentLoaded', () => {
+  const first = document.querySelector('.career-card');
+  if (first) {
+    first.classList.add('open');
+    first.querySelector('.career-body').style.maxHeight = first.querySelector('.career-body').scrollHeight + 'px';
+  }
+});
+
+// Smooth scroll offset for sticky nav
+document.querySelectorAll('.nav-inner a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      const offset = document.querySelector('.sticky-nav').offsetHeight + 16;
+      window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
