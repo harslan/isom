@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISOM Department — Suffolk University SBS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0c1f3f;
+  --navy-mid: #142d54;
+  --navy-light: #1a3a6b;
+  --gold: #c8a44e;
+  --gold-light: #e4cc82;
+  --gold-pale: #f5edda;
+  --cream: #faf8f3;
+  --white: #ffffff;
+  --slate: #4a5568;
+  --slate-light: #8896a8;
+  --radius: 8px;
+  --shadow-sm: 0 1px 3px rgba(12,31,63,0.08);
+  --shadow-md: 0 4px 16px rgba(12,31,63,0.1);
+  --shadow-lg: 0 8px 32px rgba(12,31,63,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', Georgia, serif;
+  background: var(--cream);
+  color: var(--navy);
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HERO --- */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 40%, var(--navy-light) 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 80%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(200,164,78,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 72px 32px 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200,164,78,0.35);
+  padding: 6px 16px;
+  border-radius: 3px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.2s forwards;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.35s forwards;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--slate-light);
+  font-weight: 300;
+  max-width: 560px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.5s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- MAIN --- */
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 32px 64px;
+  flex: 1;
+  width: 100%;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+/* --- DOCUMENT CARDS --- */
+.doc-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.doc-card {
+  background: var(--white);
+  border: 1px solid rgba(12,31,63,0.07);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  text-decoration: none;
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.doc-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(200,164,78,0.3);
+}
+
+.doc-card::after {
+  content: '→';
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.doc-card:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(4px);
+}
+
+.doc-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.doc-icon.blue {
+  background: linear-gradient(135deg, rgba(26,58,107,0.08), rgba(26,58,107,0.15));
+  color: var(--navy-light);
+}
+
+.doc-icon.gold {
+  background: linear-gradient(135deg, rgba(200,164,78,0.1), rgba(200,164,78,0.2));
+  color: var(--gold);
+}
+
+.doc-icon.teal {
+  background: linear-gradient(135deg, rgba(26,138,125,0.08), rgba(26,138,125,0.15));
+  color: #1a8a7d;
+}
+
+.doc-icon.purple {
+  background: linear-gradient(135deg, rgba(109,76,161,0.08), rgba(109,76,161,0.15));
+  color: #6d4ca1;
+}
+
+.doc-info { flex: 1; padding-right: 32px; }
+
+.doc-info h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.doc-info p {
+  font-size: 0.9rem;
+  color: var(--slate);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.doc-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.tag-draft {
+  background: rgba(192,57,43,0.08);
+  color: #c0392b;
+  border: 1px solid rgba(192,57,43,0.15);
+}
+
+.tag-live {
+  background: rgba(39,174,96,0.08);
+  color: #27ae60;
+  border: 1px solid rgba(39,174,96,0.15);
+}
+
+.tag-coming {
+  background: rgba(74,85,104,0.06);
+  color: var(--slate-light);
+  border: 1px solid rgba(74,85,104,0.12);
+}
+
+/* --- COMING SOON --- */
+.coming-soon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.coming-card {
+  background: var(--white);
+  border: 1px dashed rgba(12,31,63,0.12);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  opacity: 0.65;
+}
+
+.coming-card h4 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--slate);
+  margin-bottom: 4px;
+}
+
+.coming-card p {
+  font-size: 0.82rem;
+  color: var(--slate-light);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* --- FOOTER --- */
+.site-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 36px 32px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.site-footer strong {
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .hero-inner { padding: 48px 24px 40px; }
+  .main { padding: 32px 20px 48px; }
+  .doc-card { padding: 20px 24px; flex-direction: column; gap: 12px; }
+  .doc-card::after { display: none; }
+  .coming-soon-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Suffolk University &bull; Sawyer Business School</div>
+    <h1>ISOM Department Resources</h1>
+    <p class="hero-sub">Information Systems &amp; Operations Management — documents, guides, and resources for faculty and students.</p>
+  </div>
+</header>
+
+<main class="main">
+
+  <div class="section-label">Active Documents</div>
+
+  <div class="doc-grid">
+
+    <a href="bais-career-trajectories/" class="doc-card">
+      <div class="doc-icon blue">📊</div>
+      <div class="doc-info">
+        <h3>BAIS Career Trajectories in the Age of AI</h3>
+        <p>Eight forward-looking career pathways for Business Analytics &amp; Information Systems graduates, with market data, salary ranges, and advising guidance.</p>
+        <span class="doc-tag tag-draft">Draft — Feedback by Feb 23</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div style="margin-top: 48px;">
+    <div class="section-label">Coming Soon</div>
+    <div class="coming-soon-grid">
+
+      <div class="coming-card">
+        <h4>Advising Kits</h4>
+        <p>Complete advising kits for all SBS majors — double-major pathways, minor pairings, four-year plans.</p>
+      </div>
+
+      <div class="coming-card">
+        <h4>SAIL Framework</h4>
+        <p>Faculty development resources and curriculum integration guides for AI literacy.</p>
+      </div>
+
+      <div class="coming-card">
+        <h4>Competitions</h4>
+        <p>Prompt AIChemy and other student competition materials and resources.</p>
+      </div>
+
+      <div class="coming-card">
+        <h4>Course Resources</h4>
+        <p>Supplementary materials for ISOM graduate and undergraduate analytics courses.</p>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p><strong>ISOM Department</strong> · Sawyer Business School · Suffolk University</p>
+</footer>
+
+</body>
+</html>
